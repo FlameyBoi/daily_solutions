@@ -21,6 +21,7 @@ public:
         for (int i = 0; i < edges.size(); i++)
             min_path[edges[i][0]][edges[i][1]] = edges[i][2];
 
+        // Find shortest path between each pair of nodes using the Floyd–Warshall algorithm
         for (int k = 0; k < n; k++)
             for (int i = 0; i < n; i++)
                 for (int j = 0; j < n; j++)
@@ -43,9 +44,9 @@ public:
 
     void addEdge(vector<int> edge) {
         int node1 = edge[0], node2 = edge[1], weight = edge[2];
-        if (min_path[node1][node2] > weight)
+        if (min_path[node1][node2] > weight) // If the new edge is longer than the shortest path no changes are required
             for (int i = 0; i < nodes; i++)
-                for (int j = 0; j < nodes; j++)
+                for (int j = 0; j < nodes; j++) // update paths that are shortened by the new edge
                 {
                     if (min_path[i][j] > min_path[i][node1] + weight + min_path[node2][j])
                         min_path[i][j] = min_path[i][node1] + weight + min_path[node2][j];
@@ -57,10 +58,3 @@ public:
         return (min_path[node1][node2] == no_val) ? -1 : min_path[node1][node2];
     }
 };
-
-/**
- * Your Graph object will be instantiated and called as such:
- * Graph* obj = new Graph(n, edges);
- * obj->addEdge(edge);
- * int param_2 = obj->shortestPath(node1,node2);
- */
