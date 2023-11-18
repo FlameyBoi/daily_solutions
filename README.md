@@ -1,2 +1,2 @@
-# daily_solutions
+# Daily Solutions
 Solutions to leetcode daily challenges
